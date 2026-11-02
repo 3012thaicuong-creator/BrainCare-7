@@ -1026,68 +1026,7 @@ body.dark .dash-kpi,body.dark .dash-recent-row{background:#1f2937;border-color:#
 </style><style>#nhat-ky .journal-grid .journal-extra{grid-column:1 / -1;}
 </style></head>
 <body>
-<!-- ===== ĐĂNG NHẬP / ĐĂNG KÝ ===== -->
-<div class="auth-gate" id="authGate">
-<div class="auth-box">
-<h1>
-     🧠 BrainCare
-    </h1>
-<p>
-     Tạo tài khoản để lưu tiến độ cá nhân và tham gia thử thách 7 ngày.
-    </p>
-<div class="auth-tabs">
-<button class="active" id="tabDangNhap" onclick="doiAuthTab('dangnhap')">
-      Đăng nhập
-     </button>
-<button id="tabDangKy" onclick="doiAuthTab('dangky')">
-      Tạo tài khoản
-     </button>
-</div>
-<form class="auth-form active" id="formDangNhap" onsubmit="dangNhap(event)">
-<label>
-      Tên tài khoản
-     </label>
-<input autocomplete="username" id="loginUser" placeholder="Ví dụ: brainuser" required=""/>
-<label>
-      Mật khẩu
-     </label>
-<input autocomplete="current-password" id="loginPass" placeholder="Mật khẩu" required="" type="password"/>
-<div class="auth-error" id="loginError">
-</div>
-<button class="btn btn-primary" style="width:100%" type="submit">
-      🔐 Đăng nhập
-     </button>
-</form>
-<form class="auth-form" id="formDangKy" onsubmit="dangKy(event)">
-<label>
-      Biệt danh hiển thị
-     </label>
-<input id="regName" maxlength="24" placeholder="Ví dụ: MinhCare" required=""/>
-<label>
-      Tên tài khoản
-     </label>
-<input autocomplete="username" id="regUser" maxlength="20" placeholder="Ví dụ: minh2009" required=""/>
-<label>
-      Mật khẩu
-     </label>
-<input autocomplete="new-password" id="regPass" minlength="4" placeholder="Ít nhất 4 ký tự" required="" type="password"/>
-<div class="auth-error" id="regError">
-</div>
-<button class="btn btn-primary" style="width:100%" type="submit">
-      ✨ Tạo tài khoản
-     </button>
-</form>
-<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-<button class="btn btn-sm" onclick="nhapTaiKhoanTuFile()" type="button">
-      📥 Nhập tài khoản từ máy khác
-     </button>
-<input accept=".json" hidden="" id="fileNhapTaiKhoan" onchange="xuLyNhapTaiKhoan(event)" type="file"/>
-</div>
-<div class="auth-note">
-     🔒 Bản HTML này vẫn hoạt động offline và lưu dữ liệu cục bộ. Để dùng cùng một tài khoản trên máy khác, hãy xuất “Gói chuyển máy” ở Cài đặt rồi nhập file đó trên máy mới. Đây chưa phải hệ thống tài khoản cloud; không dùng mật khẩu quan trọng hoặc nhập thông tin nhạy cảm.
-    </div>
-</div>
-</div>
+
 <!-- ===== THANH ĐIỀU HƯỚNG ===== -->
 <nav>
 <div class="nav-inner">
@@ -3343,12 +3282,7 @@ function moBanDoXaoNhan(){
 function hienTrang(id){
     const target=$(id);
     if(!target)return;
-    // Nếu chưa đăng nhập thì không cho mở nội dung cá nhân.
-    if(!taiKhoanHienTai){
-        const gate=$('authGate');
-        if(gate)gate.classList.remove('hidden');
-        return;
-    }
+   
     const menu=document.getElementById('mainMenu');
     const btn=document.getElementById('menuToggle');
     if(menu)menu.classList.remove('mobile-open');
@@ -4598,7 +4532,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             $('ngayNhap').valueAsDate=new Date();$('ngayNhap').max=ngayHienTaiLocal();$('ngayNhap').addEventListener('change',capNhatGoiYNhatKyTheoNgay);renderTimer();
             ['maNghienCuu','mucDichDuLieu','dongThuanDuLieu'].forEach(id=>$(id)?.addEventListener('change',luuHoSoNghienCuu));
             capNhatTrangThaiNghienCuu();chonGiaiDoanDanhGia('baseline');capNhatGoiYNhatKyTheoNgay();
-            if(!khoiPhucPhien())return;
+           
             // Check-in is manual; opening the app never marks a challenge day complete.
             // Keep the original welcome message when there is no chat history.
             if(layDuLieu(CSDL_CHAT).length===0) $('khungChat').scrollTop=$('khungChat').scrollHeight;
